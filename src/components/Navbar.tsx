@@ -34,12 +34,14 @@ export default function Navbar() {
                 </button>
 
                 <div className="text-lg font-semibold mx-auto md:mx-0">
-                    <Link href="/"><Image
-                        src="/shop-logo.png"
-                        alt="Logo"
-                        width={100}
-                        height={40}
-                    /></Link>
+                    <Link href="/">
+                        <Image
+                            src="/shop-logo.png"
+                            alt="Logo"
+                            width={100}
+                            height={40}
+                        />
+                    </Link>
                 </div>
 
                 <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
