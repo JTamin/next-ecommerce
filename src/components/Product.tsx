@@ -1,3 +1,5 @@
+"use client"
+import { useCartContext } from "@/context/cartContext"
 import Image from "next/image"
 
 type Products = {
@@ -10,7 +12,9 @@ type Products = {
 type ProductProps = {
     products: Products[]
 }
-const Product = async ({ products }: ProductProps) => {
+const Product = ({ products }: ProductProps) => {
+    const { addCart, cart, isLoading } = useCartContext()
+    console.log(cart)
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 m-10">
@@ -29,9 +33,14 @@ const Product = async ({ products }: ProductProps) => {
                     </div>
                     <h1 className="mt-4 text-lg font-semibold text-center">{p.name}</h1>
                     <p className="mt-2 text-center font-medium">{p.price}</p>
+
+                    {/* {temporary p tag} */}
                     <p className="mt-2 text-blue-500 cursor-pointer">view details</p>
-                    <button className="mt-4 bg-yellow-500 w-full text-white px-6 py-2 rounded  transition">
-                        Add to cart
+                    <button
+                        onClick={() => addCart(p)}
+                        disabled={isLoading}
+                        className="mt-4 bg-yellow-500 w-full text-zinc-300 px-6 py-2 rounded  transition disabled:opacity-80">
+                        {!isLoading ? 'Add to cart' : 'Adding...'}
                     </button>
                 </div>
             ))}

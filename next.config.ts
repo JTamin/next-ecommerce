@@ -2,12 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  reactCompiler: true,
   images: {
-    domains: ["localhost"],
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        pathname: "/wp/wp-content/uploads/**",
+      },
+    ],
   },
   experimental: {
-    useCache: true,
+    reactCompiler: true,
   },
 };
 

@@ -1,4 +1,5 @@
 import Product from "@/components/Product";
+
 type Product = {
   id: number,
   name: string,
@@ -7,14 +8,11 @@ type Product = {
   image: string
 }
 export default async function Home() {
-  const res = await fetch('http://localhost/wp/wp-json/custom-api/v2/product', {
-    next: { revalidate: 3600 }
-  });
-  if (!res.ok) return <h1>Error</h1>
+  const res = await fetch('http://localhost/wp/wp-json/custom-api/v2/product');
   const products: Product[] = await res.json();
   return (
     <>
       <Product products={products} />
     </>
-  );
+  )
 }
